@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADRIGURUMIS - Dashboard Admin</title>
+    <link rel="stylesheet" href="../../components/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../components/css/style1.css">
+    <script src="../../components/js/KitFontAwesome.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Para gráficos -->
+    <style>
+        .fade-in { animation: fade 0.5s ease-in-out; }
+        .kpi-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .kpi-card:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .alert { animation: slideIn 0.5s ease; }
+        @keyframes slideIn { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
+        <div class="container">
+            <h1 class="navbar-brand fw-bold mb-0">ADRIGURUMIS - Admin</h1>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="home.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="inventario.html"><i class="fas fa-boxes"></i> Inventario</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="soporte.html"><i class="fas fa-headset"></i> Soporte</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="ventas.html"><i class="fas fa-shopping-cart"></i> Ventas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="chatbot.html"><i class="fas fa-robot"></i> Chatbot</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="../../../index.html"><i class="fa-solid fa-right-from-bracket"></i></i> Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard -->
+    <section class="py-4 bg-light">
+        <div class="container">
+            <h2 class="mb-4 fade-in">Dashboard Ejecutivo</h2>
+
+            <!-- KPIs -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="card kpi-card text-center fade-in">
+                        <div class="card-body">
+                            <i class="fas fa-dollar-sign fa-3x text-success mb-2"></i>
+                            <h4>$15,250</h4>
+                            <p class="text-muted">Ventas del Mes</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card kpi-card text-center fade-in">
+                        <div class="card-body">
+                            <i class="fas fa-shopping-bag fa-3x text-primary mb-2"></i>
+                            <h4>320</h4>
+                            <p class="text-muted">Pedidos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card kpi-card text-center fade-in">
+                        <div class="card-body">
+                            <i class="fas fa-users fa-3x text-info mb-2"></i>
+                            <h4>1,450</h4>
+                            <p class="text-muted">Clientes Activos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card kpi-card text-center fade-in">
+                        <div class="card-body">
+                            <i class="fas fa-star fa-3x text-warning mb-2"></i>
+                            <h4>4.8</h4>
+                            <p class="text-muted">Calificación Promedio</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráfico de Ventas -->
+            <div class="row g-4">
+                <div class="col-md-8">
+                    <div class="card fade-in">
+                        <div class="card-header">
+                            <h5>Ventas Mensuales</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="salesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card fade-in">
+                        <div class="card-header">
+                            <h5>Productos Más Vendidos</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between">
+                                    Osito Amigurumi <span class="badge bg-primary">150 vendidos</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    Gorro Crochet <span class="badge bg-primary">120 vendidos</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    Bolsa Tejida <span class="badge bg-primary">100 vendidos</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alertas -->
+            <div class="alert alert-warning mt-4 fade-in" role="alert">
+                <i class="fas fa-exclamation-triangle"></i> Alerta: Stock bajo en "Conejito Crochet" (solo 5 unidades restantes).
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 text-center">
+        <p>&copy; 2022 ADRIGURUMIS. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="../../components/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Gráfico de ventas
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Ventas ($)',
+                    data: [12000, 15000, 18000, 14000, 16000, 15250],
+                    borderColor: '#d16ba5',
+                    backgroundColor: 'rgba(209, 107, 165, 0.2)',
+                    tension: 0.4
+                }]
+            },
+            options: { responsive: true }
+        });
+    </script>
+</body>
+</html>

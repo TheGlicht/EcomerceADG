@@ -1,0 +1,68 @@
+/* Una vez el proyecto este funcional se haran las correcciones pertinentes para una mejor experiencia de usurio. */
+body { background:#fafafa; font-family: 'Segoe UI', sans-serif; }
+
+/* NAV */
+header a {
+margin: 0 15px;
+cursor: pointer;
+font-weight: 600;
+text-decoration: none;
+color: #444;
+}
+header a:hover { color:#d16ba5; }
+
+
+/* SECCIONES */
+.section { display:none; animation: fade .5s ease; }
+.section.active { display:block; }
+
+
+@keyframes fade {
+from { opacity:0; transform: translateY(20px); }
+to { opacity:1; transform: translateY(0); }
+}
+
+
+/* CATALOGO */
+.product-card {
+transition: transform .3s, box-shadow .3s;
+border-radius: 15px;
+cursor: pointer;
+}
+.product-card:hover {
+transform: translateY(-6px);
+box-shadow: 0 15px 30px rgba(0,0,0,.15);
+}
+.product-card img {
+height: 200px;
+object-fit: cover;
+border-radius: 15px 15px 0 0;
+}
+
+
+/* OVERLAY */
+.overlay {
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,.6);
+display: none;
+align-items: center;
+justify-content: center;
+z-index: 999;
+}
+.overlay.active { display:flex; }
+.overlay-box {
+background:#fff;
+padding:30px;
+border-radius:20px;
+text-align:center;
+max-width:400px;
+animation: fade .4s ease;
+}
+
+
+/* LOGIN */
+.auth-box { max-width:400px; margin:auto; border-radius:20px; }
+
+
+footer { background:#fff; border-top:1px solid #ddd; margin-top:60px; }

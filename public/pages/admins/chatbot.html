@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADRIGURUMIS - Dashboard Admin</title>
+    <link rel="stylesheet" href="../../components/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../components/css/style1.css">
+    <script src="../../components/js/KitFontAwesome.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Para gráficos -->
+    <style>
+        .fade-in { animation: fade 0.5s ease-in-out; }
+        .kpi-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .kpi-card:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .alert { animation: slideIn 0.5s ease; }
+        @keyframes slideIn { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
+        <div class="container">
+            <h1 class="navbar-brand fw-bold mb-0">ADRIGURUMIS - Admin</h1>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="home.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="inventario.html"><i class="fas fa-boxes"></i> Inventario</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="soporte.html"><i class="fas fa-headset"></i> Soporte</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="ventas.html"><i class="fas fa-shopping-cart"></i> Ventas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="chatbot.html"><i class="fas fa-robot"></i> Chatbot</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="../../../index.html"><i class="fa-solid fa-right-from-bracket"></i></i> Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Chatbot -->
+    <section class="py-4 bg-light">
+        <div class="container">
+            <h2 class="mb-4 fade-in">Chatbot de IA</h2>
+            <div class="card fade-in">
+                <div class="card-body">
+                    <div id="chatBox" class="chat-box">
+                        <div class="message bot">¡Hola! Soy el asistente de ADRIGURUMIS. ¿En qué puedo ayudarte?</div>
+                    </div>
+                    <div class="input-group mt-3">
+                        <input type="text" class="form-control" id="chatInput" placeholder="Escribe tu mensaje...">
+                        <button class="btn btn-primary" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 text-center">
+        <p>&copy; 2022 ADRIGURUMIS. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="../../components/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const chatBox = document.getElementById('chatBox');
+            if (input.value.trim()) {
+                // Agregar mensaje del usuario
+                chatBox.innerHTML += `<div class="message user">${input.value}</div>`;
+                input.value = '';
+                chatBox.scrollTop = chatBox.scrollHeight;
+
+                // Simular respuesta de IA
+                setTimeout(() => {
+                    const responses = [
+                        "Entiendo tu consulta. ¿Puedes darme más detalles?",
+                        "¡Gracias por contactarnos! Estamos aquí para ayudar.",
+                        "Para pedidos, revisa tu historial en 'Mis Compras'."
+                    ];
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    chatBox.innerHTML += `<div class="message bot">${randomResponse}</div>`;
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }, 1000);
+            }
+        }
+        // Enviar con Enter
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+</html>
